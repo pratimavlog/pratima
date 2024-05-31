@@ -1,9 +1,13 @@
 package com.example.themesetting
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.RadioButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -78,6 +82,7 @@ class secquizapp : AppCompatActivity() {
     var currentIndex:Int=0
     var score:Int=0
     var wrong:Int=0
+    var currect=0
     var qindex:Int=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,7 +100,6 @@ class secquizapp : AppCompatActivity() {
         binding.radiobutton2.text = options[1]
         binding.radiobutton3.text = options[2]
         binding.radiobutton4.text = options[3]
-        currentIndex++
 
 
         binding.nextQuestionBtn.setOnClickListener {
@@ -113,9 +117,21 @@ class secquizapp : AppCompatActivity() {
     private fun shownextquestion()
     {
         checkAnswer()
-        if(qindex < questions.size -1)
+        if(currentIndex < questions.size -1)
         {
             binding.questiontab.text=questions[currentIndex]
+            binding.radiobutton1.text = options[currentIndex * 4] // 2*4=8
+            binding.radiobutton2.text = options[currentIndex * 4 + 1] //  2*4+1=9
+            binding.radiobutton3.text = options[currentIndex * 4 + 2] //  2*4+2=10
+            binding.radiobutton4.text = options[currentIndex * 4 + 3]
+
+        }
+        else{
+            var i = Intent(this,scoreactivity::class.java)
+            i.putExtra("Score",score)
+            i.putExtra("Correct",currect)
+            i.putExtra("Wrong",wrong)
+            startActivity(i)
         }
         
     }
@@ -123,26 +139,53 @@ class secquizapp : AppCompatActivity() {
     {
         val radiobutton=findViewById<RadioButton>(binding.radioGroup.checkedRadioButtonId)
         val button=radiobutton.text.toString()
-        Toast.makeText(this,"anser is: $button",Toast.LENGTH_SHORT).show()
 
-        if(button==answer[qindex])
+        if(button==answer[currentIndex])
         {
-            score++
+            currect++
             correctdailog()
         }
         else{
             wrong++
             wrongdailog()
         }
+        currentIndex++
+        radiobutton.isChecked=false
     }
 
     private fun correctdailog()
     {
 
+        val builder= AlertDialog.Builder(this)
+        var view= android.view.LayoutInflater.from(this).inflate(R.layout.correct_layout,null)
+        builder.setView(view)
+        builder.setCancelable(false)
+        var textView=view.findViewById<TextView>(R.id.textView)
+        textView.text="Score: $currect"
+        var correct_ok=view.findViewById<Button>(R.id.correct_ok)
+        val alertDialog=builder.create()
+        correct_ok.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+
 
     }
     private fun wrongdailog()
     {
+        val builder= AlertDialog.Builder(this)
+        var view= android.view.LayoutInflater.from(this).inflate(R.layout.wrong_layout,null)
+        builder.setView(view)
+        builder.setCancelable(false)
+        var textView=view.findViewById<TextView>(R.id.textView)
+        textView.text="Wrong: $wrong"
+        var wrong_ok=view.findViewById<Button>(R.id.wrong_ok)
+        val alertDialog=builder.create()
+        wrong_ok.setOnClickListener {
+            alertDialog.dismiss()
+        }
 
+        alertDialog.show()
     }
 }

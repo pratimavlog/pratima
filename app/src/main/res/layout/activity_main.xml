@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:padding="30dp"
+    android:orientation="vertical"
+    android:gravity="center">
+
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:background="@color/colorAccent"
+    android:text="Click me"
+    android:id="@+id/clickme"
+
+    />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Name: "
+        android:padding="20dp"
+        android:id="@+id/utusermessage"
+        android:layout_marginTop="30dp"
+
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:background="@color/colorAccent"
+        android:text="Send data to next activity"
+        android:id="@+id/button2"
+        android:layout_marginTop="30dp"
+
+        />
+
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:background="@color/colorAccent"
+        android:text="Recyclerview Demo"
+        android:id="@+id/recyclerviewbutton"
+        android:layout_marginTop="30dp"
+
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:background="@color/colorAccent"
+        android:text="BMI Calculator"
+        android:id="@+id/bmibutton"
+        android:layout_marginTop="30dp"
+
+        />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:background="@color/colorAccent"
+        android:text="Quiz app"
+        android:id="@+id/quizapp"
+        android:layout_marginTop="30dp"
+
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:background="@color/colorAccent"
+        android:text="sec Quiz app"
+        android:id="@+id/anotherquizapp"
+        android:layout_marginTop="30dp"
+
+        />
+
+</LinearLayout>
